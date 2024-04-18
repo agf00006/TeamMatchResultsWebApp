@@ -1,0 +1,39 @@
+﻿@page
+@model TeamMatchResultsWebApp.Pages.GetAllMatchResultsModel
+@{
+    ViewData["Title"] = "All Match Results";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div id="allMatchResultsContainer" class="mt-4">
+    @if (Model.AllMatchResults != null && Model.AllMatchResults.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var result in Model.AllMatchResults)
+                {
+                    var score = $"{result.HomeTeamGoals} - {result.AwayTeamGoals}";
+                    <tr>
+                        <td>@result.MatchDate</td>
+                        <td>@result.HomeTeam</td>
+                        <td>@result.AwayTeam</td>
+                        <td>@score</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No match results found.</p>
+    }
+
